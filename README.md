@@ -16,3 +16,6 @@ it's a example code for Vue.js book named "The Majesty of Vue.js 2"
 
 - Book's Official Github
   - https://github.com/hootlex/the-majesty-of-vuejs-2
+
+## Setting
+Before opening `*.html `, you have to install `Vue.js` Library using `npm install vue`
