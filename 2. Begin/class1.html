@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Greeting your Majesty (HTML tag)</h1>
+      <h1>{{ message }}</h1>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    // Vue 인스턴스
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'Greeting your Majesty (vue instance\'s Data object)'
+      }
+    })
+  </script>
+</html>
