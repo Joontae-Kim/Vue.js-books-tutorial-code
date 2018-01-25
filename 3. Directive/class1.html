@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>디렉티브</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>디렉티브</h1>
+      <h3>1. <code>v-show</code> 디렉티브</h3>
+      <h4>예제 1) </h4>
+      <ul>
+        <li><code>v-model</code>을 이용해 <code>textarea</code>를 <code>message</code> 변수와 바인딩해서 메시지를 표시</li>
+      </ul>
+      <div id="app">
+        <textarea rows="8" cols="80" v-model="message"></textarea>
+        <pre>{{ $data }}</pre>
+      </div>
+      <hr>
+      <h4>예제 2) </h4>
+      <ul>
+        <li><code>v-model</code>을 이용해 <code>textarea</code>를 <code>message</code> 변수와 바인딩해서 메시지를 표시</li>
+        <li><code>v-show</code>를 이용해 <code>button</code>를 <code>message</code> 변수와 바인딩해서 <code>message</code> 변수의 상태에 따라 <code>button</code>을 토글하는 예제</li>
+      </ul>
+      <div id="app2">
+        <textarea rows="8" cols="80" v-model="message"></textarea>
+        <button type="button" class="btn btn-default" v-show="message">Send the Message</button>
+        <pre>{{ $data }}</pre>
+      </div>
+      <hr>
+      <h4>예제 3) </h4>
+      <ul>
+        <li><code>v-model</code>을 이용해 <code>textarea</code>를 <code>message</code> 변수와 바인딩해서 메시지를 표시</li>
+        <li><code>v-show</code>를 이용해 <code>button</code>를 <code>message</code> 변수와 바인딩해서 <code>message</code> 변수의 상태에 따라 <code>button</code>을 토글</li>
+        <li><code>@click</code> 이벤트에 <code>alert</code> 메소드를 바인딩해서 <code>message</code>를 <code>alert창</code>의 메시지로 활용하는 예제 </li>
+      </ul>
+      <div id="app3">
+        <textarea rows="8" cols="80" v-model="message"></textarea>
+        <button type="button" class="btn btn-default" v-show="message" @click="alert">Send the Message</button>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="class1.js"></script>
+</html>
