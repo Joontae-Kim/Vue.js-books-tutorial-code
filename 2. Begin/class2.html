@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2. 시작하기</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>2. 양방향 바인딩</h1>
+      <ol>
+        <li>사용자 입력 엘리먼트의 메시지 변경 => <code>v-model</code> 디렉티브 이용 </li>
+        <li>동적 메시지 값 변경 => `{{ message }}`</li>
+        <li>데이터는 기본적으로 모든 입력 이벤트에 동기화</li>
+      </ol>
+      <hr>
+      <h3>Example</h3>
+      <div id="app">
+        <input class="form-control" type="text" v-model="message">
+        <h1>{{ message }}</h1>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="class2.js"></script>
+</html>
