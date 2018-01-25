@@ -46,6 +46,6 @@
 
 - 일반적으로 `v-if`는 토글 비용이 높고 `v-show`는 초기 렌더링 비용이 더 높습니다. 매우 자주 바꾸기를 원한다면 `v-show`를, 런타임 시 조건이 바뀌지 않으면 `v-if`를 권장합니다.
 
-### Official Site에서 연급한 `v-if` 와 `v-for`
+#### Official Site에서 연급한 `v-if` 와 `v-for`
 - `v-if`와 함께 사용하는 경우, `v-for`는 `v-if`보다 높은 우선순위를 갖습니다.
 - 추가설명 첨부: [리스트 렌더링 가이드](https://kr.vuejs.org/v2/guide/list.html#v-for-%EC%99%80-v-if)
