@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>디렉티브</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <h1>디렉티브</h1>
+        <h3>1. <code>v-if</code> 디렉티브</h3>
+        <ul>
+          <li>간혹 여러 개의 엘리먼트를 한 번에 토글해야 하는 경우 <code>template</code>엘리먼트에서 <code>v-if</code>를 사용하면 됨.</li>
+          <li><code>div</code> 또는 <code>span</code>을 사용하는 것이 적절하지 않은 경우에도 <code>template</code>을 보이지 않는 래퍼로 사용할 수 있음.</li>
+          <ul>
+            <li><code>template</code>은 최종 결과에 렌더링되지 않음.</li>
+          </ul>
+        </ul>
+        <hr>
+        <h4>예제 1) </h4>
+        <h4 v-if="!message">You must send a message for Help!</h4>
+        <textarea class="form-control" v-if="message" rows="8" cols="50"></textarea>
+        <button class="btn btn-default" v-if="message" type="button" name="button">Send</button>
+        <pre>{{ $data }}</pre>
+        <hr>
+        <h4>예제 2) </h4>
+        <ol>
+          <li><code>template</code>에 <code>v-if="!message2"</code>를 사용해 <code>message2</code>가 null이 되면 </li>
+          <li><code>template</code>을 토글하는 예제</li>
+        </ol>
+        <template v-if="!message2">
+          <h1>You must send a message!</h1>
+          <p>Dispatch a messenger!</p>
+          <p>To nearby kingdom of Hearts!</p>
+        </template>
+        <textarea v-model="message2" rows="8" cols="80"></textarea>
+        <button class="btn btn-default" type="button" v-show="message2">Send</button>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="class2.js"></script>
+</html>
