@@ -18,10 +18,24 @@
           </ul>
         </ul>
         <hr>
+        <h2><code>v-if</code> vs <code>v-show</code></h2>
+        <ul>
+          <li>많은 상황에서 <code>v-show</code>를 사용하면 페이지 렌더링 중에 더 많은 로드시간이 발생한다는 것을 경험할 수 있음</li>
+          <li>이와 반대로 Vue.js 가이드에 따르면 <code>v-if</code>는 진정한 조건부 렌더링이다</li>
+          <li>일반적으로</li>
+          <ul>
+            <li><code>v-if</code>는 토글 비용이 높고</li>
+            <li><code>v-show</code>는 초기 렌더링 비용이 높음</li>
+            <li>따라서, </li>
+            <li>매우 자주 토글해야 하는 경우 ==> <code>v-show</code></li>
+            <li>런타임 조건이 자주 변경될 가능성이 낮은 경우 ==> <code>v-if</code></li>
+          </ul>
+        </ul>
+        <hr>
         <h4>예제 1) </h4>
         <h4 v-if="!message">You must send a message for Help!</h4>
-        <textarea class="form-control" v-if="message" rows="8" cols="50"></textarea>
-        <button class="btn btn-default" v-if="message" type="button" name="button">Send</button>
+        <textarea class="form-control" v-model="message" rows="8" cols="50"></textarea>
+        <button class="btn btn-default" v-show="message" type="button" name="button">Send</button>
         <pre>{{ $data }}</pre>
         <hr>
         <h4>예제 2) </h4>
