@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>디렉티브</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <h1>예제</h1>
+        <hr>
+        <!-- <template v-if="gender == 'female'">
+            <h2>Hello, Mr {{ name }}</h2>
+        </template>
+        <template v-else-if="gender == 'male'">
+            <h2>Hello, Miss {{ name }}</h2>
+        </template> -->
+        <h1 v-if="gender == 'female' || gender == 'male'">Hello,
+          <span v-if="gender == 'female'"> Miss</span>
+          <span v-else> Mister</span>
+          {{ name }}
+        </h1>
+        <!-- <h4 class="text-alert" v-else-if="gender !== 'female' && gender !== 'male'">So you can't decide. Fine!</h4> -->
+        <h4 class="text-alert" v-else>So you can't decide. Fine!</h4>
+        <h5>Enter your gender</h5>
+        <input type="text" v-model="gender" class="form-control">
+        <h5>Enter your name</h5>
+        <input type="text" v-model="name" class="form-control">
+        <hr>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="practice.js"></script>
+</html>
