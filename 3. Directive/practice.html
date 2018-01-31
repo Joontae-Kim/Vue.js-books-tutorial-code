@@ -22,7 +22,9 @@
           {{ name }}
         </h1>
         <!-- <h4 class="text-alert" v-else-if="gender !== 'female' && gender !== 'male'">So you can't decide. Fine!</h4> -->
+        <h4 class="text-alert" v-else-if="!gender">Please, Let me know your gender!</h4>
         <h4 class="text-alert" v-else>So you can't decide. Fine!</h4>
+
         <h5>Enter your gender</h5>
         <input type="text" v-model="gender" class="form-control">
         <h5>Enter your name</h5>
