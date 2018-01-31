@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>상호작용</h1>
+      <h3>이벤트 처리 - 3.<code>v-on</code>의 축약형</h3>
+      <ul>
+        <li><code>v-on</code>의 축약형인 <code>@</code> 기호가 있음.</li>
+        <li><code>@</code>은 <code>v-on:</code>을 대체함.</li>
+      </ul>
+<pre>
+//v-on:click을 이용한 click 이벤트 청취
+button v-on:click="test">
+  Test!
+/button>
+
+//@click을 이용한 click 이벤트 청취
+button @click="test">
+  Test!
+/button>
+</pre>
+
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="class4.js"></script>
+</html>
