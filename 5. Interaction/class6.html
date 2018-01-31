@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>상호작용</h1>
+      <h3>키 한정자 또는 키 수식어</h3>
+      <ul>
+        <li>입력 엘리먼트 중 하나에 포커스를 주고 <code>엔터키</code>를 누르면 <code>calculate 메서드</code>가 호출됨</li>
+        <li>폼에 버튼이 없거나 버튼이 전혀 없는 경우에는 키보드 이벤트를 대신 청취할 수도 있음</li>
+        <li>키보드 이벤트를 청취할 때는 키 코드를 확인해야 할때가 많음..</li>
+        <li>키 수식어 별칭 목록</li>
+        <ul>
+          <li><code>.enter</code></li>
+          <li><code>.tab</code></li>
+          <li><code>.delete</code> (“Delete” 와 “Backspace” 키 모두를 캡처합니다)</li>
+          <li><code>.esc</code></li>
+          <li><code>.space</code></li>
+          <li><code>.up</code></li>
+          <li><code>.down</code></li>
+          <li><code>.left</code></li>
+          <li><code>.right</code></li>
+        </ul>
+      </ul>
+      <hr>
+      <h3>예제</h3>
+      <ul>
+        <li><code>input</code> 엘리먼트에 <code>@keyup.enter="calculate"</code> 키 한정자를 바인딩에 <code>calculate</code> 버튼을 누르거나 클릭하지 않아도 </li>
+        <li><code>input</code> 엘리먼트의 값을 변경한 후, <code>Enter 키</code>를 누르면 자동으로 계산값이 변경됨.</li>
+      </ul>
+      <form class="form-inline">
+        <!-- 입력을 숫자로 파싱하기 위한 특별한 한정자인 'number'를 사용 -->
+        <input v-model.number="a" @keyup.enter="calculate" type="number" class="form-control">
+        <select v-model="operator" @change="calculate" class="form-control">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+
+        <!-- 입력을 숫자로 파싱하기 위한 특별한 한정자인 'number'를 사용 -->
+        <input v-model.number="b" @keyup.enter="calculate" type="number" class="form-control">
+        <!-- <button @click="calculate" type="submit" class="btn btn-default" type="button">Calculate</button> -->
+      </form>
+      <h2>Result : {{ a }} {{ operator }}  {{ b }} = {{ c }}</h2>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="class5.js"></script>
+</html>
