@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>리스트 렌덩링</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>리스트 렌더링</h1>
+      <h3>연습 문제</h3>
+      <ul class="list-group">
+        <li v-for="(value, key, index) in person" class="list-group-item">{{ index }} : {{ key }} = {{ value }}</li>
+      </ul>
+      <hr>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="practice.js"></script>
+</html>
