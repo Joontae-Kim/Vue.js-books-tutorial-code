@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>리스트 렌더링</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h3>배열 순회</h3>
+      <hr>
+      <h3>예제</h3>
+      <pre>stories:[
+  "i crashed my car today!",
+  "Yesterday, someone sole my bag!",
+  "Someone ate my chocolate",
+]</pre>
+    <ul class="list-group">
+      <li v-for="story in stories" class="list-group-item">Someone said {{ story }}</li>
+    </ul>
+    <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="class2.js"></script>
+</html>
