@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>상호작용</h1>
+      <h3>이벤트 한정자 또는 이벤트 수식어</h3>
+      <h4>* Vue.js 공식 홈페이지 참조 => <small> <a href="https://kr.vuejs.org/v2/guide/events.html">Vue.js 공식 한글사이트 - 이벤트 핸들링 부분 </a> </small></h4>
+      <ul>
+        <li>이벤트 핸들러 내부에서 event.preventDefault() 또는 event.stopPropagation()를 호출하는 것은 매우 보편적인 일입니다.</li>
+        <li>메소드 내에서 쉽게 이 작업을 할 수 있지만, DOM 이벤트 세부 사항을 처리하는 대신 데이터 로직에 대한 메소드만 사용할 수 있으면 더 좋을 것입니다.</li>
+        <li>이 문제를 해결하기 위해, Vue는 v-on 이벤트에 이벤트 수식어를 제공합니다. 수식어는 점으로 표시된 접미사 입니다.</li>
+        <ul>
+            <li><code>.stop</code></li>
+            <li><code>.prevent</code></li>
+            <li><code>.capture</code></li>
+            <li><code>.self</code></li>
+            <li><code>.once</code></li>
+        </ul>
+        <li>자세한 내용은 위 url 참조</li>
+      </ul>
+      <br>
+      <h4>다시 책으로 넘어와서,</h4>
+      <ul>
+        <li>바로 계산기 예제를 만들면서 시작한다.</li>
+      </ul>
+
+      <hr>
+      <h3>예제</h3>
+      <form class="form-inline">
+        <!-- 입력을 숫자로 파싱하기 위한 특별한 한정자인 'number'를 사용 -->
+        <input @change="calculate" v-model.number="a" type="number" class="form-control">
+        <select @change="calculate" v-model="operator" class="form-control">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+
+        <!-- 입력을 숫자로 파싱하기 위한 특별한 한정자인 'number'를 사용 -->
+        <input @change="calculate" v-model.number="b" type="number" class="form-control">
+        <button @click.prevent="calculate" type="submit" class="btn btn-default" type="button">Calculate</button>
+      </form>
+      <h2>Result : {{ a }} {{ operator }}  {{ b }} = {{ c }}</h2>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="class5.js"></script>
+</html>
