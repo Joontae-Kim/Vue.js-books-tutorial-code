@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>상호작용</h1>
+      <h3>이벤트 처리 - 2. 메서드를 이용한 이벤트 처리</h3>
+      <h3>예제)</h3>
+      <div class="text-center">
+        <h2>{{ upvotes }}</h2>
+        <button v-on:click="upvoting" class="btn btn-primary">Upvote!</button>
+      </div>
+      <br>
+      <hr>
+      <ul>
+        <li> Vue 인스턴스의 <code>methods</code>에 </li>
+        <ol>
+            <li><code>upvoting</code>이라는 이벤트를 메서드를 정의해주고,</li>
+            <li><code>button</code>클릭 시 ==>  <code>upvoting</code> 이벤트가 실행되고,</li>
+            <li>투표수를 증가를 위한 <code>upvotes</code> 인자를 <code>Vue 인스턴스</code>의 <code>data</code>에 등록해준다.</li>
+            <li>그 다음, <code>upvoting</code> 메서드에 <code>button</code>의 <code>v-on:click 이벤트 리스너</code>를 바인딩.</li>
+        </ol>
+        <li><code>upvote</code>라는 메서드에 <code>v-on:click 이벤트 리스너</code>를 바인딩</li>
+        <li>이전과 동일하나 가독성과 이해하기 편해짐</li>
+      </ul>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="class3.js"></script>
+</html>
