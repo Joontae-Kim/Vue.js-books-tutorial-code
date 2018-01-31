@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>리스트 렌덩링</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>리스트 렌더링</h1>
+      <h3>객체 배열 순회</h3>
+      <hr>
+      <h3>예제</h3>
+      <ul class="list-group">
+        <li v-for="story in stories" class="list-group-item">{{ story.writer }} said "{{ story.plot }}"</li>
+      </ul>
+      <hr>
+      <h4>인덱스 추가 표시 <code>(story, index) in stories</code>로 표현하면 인덱스 출력가능 </h4>
+      <ul class="list-group">
+        <li v-for="(story, index) in stories" class="list-group-item">{{ index }} : {{ story.writer }} said "{{ story.plot }}"</li>
+      </ul>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="class3.js"></script>
+</html>
