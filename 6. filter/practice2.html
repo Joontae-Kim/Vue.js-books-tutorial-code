@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h3>Self Practice</h3>
+      <h5>List</h5>
+      <ul>
+        <li>List Rendering</li>
+        <li>List Filtering</li>
+        <li>Custom Filtering</li>
+        <li>Search and List Rendering</li>
+        <li>Interactions</li>
+      </ul>
+      <hr>
+      <hr>
+      <div class="col-md-12">
+        <h3>Hot Article</h3>
+      </div>
+      <div class="col-md-12">
+        <div v-for="(article, index) in hotArticle">
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h4> {{ article.title }} <small> - {{ article.writer }}</small> </h5>
+                <hr>
+                <div class="text-right">
+                    <button @click="followArticle(article.id)" :disabled="article.votable" class="btn btn-primary">Follow {{ article.upvotes }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        <h3>Search Post : {{ search.length }}</h3>
+        <input placeholder="press keyword" v-model="query" class="form-control" type="text">
+        <br>
+      </div>
+      <div class="col-md-12">
+        <!-- <h4>Result : </h4> -->
+        <div v-if="search.length < 1">
+          <h5>No Result</h5>
+        </div>
+        <div v-else v-for="(article, index) in search">
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h4> {{ article.title }} <small> - {{ article.writer }}</small> </h5>
+                <hr>
+                <div class="text-right">
+                    <button @click="followArticle(article.id)" :disabled="article.votable" class="btn btn-primary">Follow {{ article.upvotes }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        <h3>Normal Article</h3>
+      </div>
+      <div class="col-md-12">
+        <!-- <div v-for="(article, index) in nothotArticle"> -->
+        <div v-for="(article, index) in nothotArticle">
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h4> {{ article.title }} <small> - {{ article.writer }}</small> </h5>
+                <hr>
+                <div class="text-right">
+                    <button @click="followArticle(article.id)" :disabled="article.votable" class="btn btn-primary">Follow {{ article.upvotes }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <hr>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script type="text/javascript">
+    var practice2 = new Vue({
+      el: '.container',
+      data: function() {
+        return {
+          feed: [
+            { title: 'Vue CLI 3.0 사용하기', writer: 'ChangJoo Park', upvotes: 100, follow: false, id: '1g3hjg123', votable:false ,},
+            { title: 'Vue Devtools 4.0 업데이트 안내', writer: 'ChangJoo Park', upvotes: 80, follow: false, id: 'sv87s89s', votable:false ,},
+            { title: 'Vue.js 공식 ESLint 플러그인 적용하기', writer: 'ChangJoo Park', upvotes: 89,follow: false, id: '5n6m71n', votable:false ,},
+            { title: 'Vuetiful Korea 3회 모임 발표 자료', writer: 'Vue.js 한국어 사용자 모임', upvotes: 78, follow: false, id: 'n1bn23bsa', votable:false ,},
+            { title: 'Vue와 NativeScript로 네이티브 모바일 앱 만들기' ,writer: 'ChangJoo Park', upvotes: 120, follow: false, id: '2h345jh2', votable:false ,},
+            { title: '1분만에 Vue.js와 NativeScript 앱 만들기', writer: 'ChangJoo Park', upvotes: 105, follow: false, id: 'z87db578', votable:false ,},
+            { title: 'vue-validate 간단한 사용법 및 field-input 컴포넌트 소개' ,writer: 'gongzza', upvotes: 100, follow: false, id: 'n6b78mn456b', votable:false ,},
+            { title: 'Vue.js 컴포넌트 스타일 가이드', writer: 'pablohpsilva', upvotes: 90, follow: false, id: 'j45bn7mn3b56', votable:false ,},
+          ],
+          query: ''
+        }
+      },
+      computed: {
+        hotArticle: function () {
+          var orderArticle = _.orderBy(this.feed, 'upvotes', ['desc']);
+          return orderArticle.filter(function (article, index) {
+              if (index < 4) {
+                return article;
+              }
+          })
+        },
+        nothotArticle: function () {
+           const arr = _.differenceWith(this.feed, this.hotArticle, _.isEqual);
+           return _.orderBy(arr, 'upvotes', ['desc']);
+        },
+        search: function () {
+          var query = this.query;
+          console.log('query ==> ', query, query === '');
+          if (query !== '') {
+            return this.feed.filter(function(article) {
+              return article.title.includes(query) || article.writer.includes(query)
+            })
+          } else{
+            return [];
+          }
+        }
+      },
+      methods: {
+        followArticle: function(id) {
+          var findArticle = _.findKey(this.feed, ['id', id]);
+          this.feed[findArticle].upvotes += 1;
+          this.feed[findArticle].votable = true;
+        }
+      },
+    })
+  </script>
+  <style>
+    .panel-inline{
+      display: inline-block;
+    }
+  </style>
+</html>
