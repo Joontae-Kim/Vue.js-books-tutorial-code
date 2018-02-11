@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chp6.4 Use Utility Library</h1>
+      <ul>
+        <li>데이터 정렬/필터/색인하기 위해서는 JS 유틸리티 라이브러리를 사용하는 것을 고려해볼 필요가 있음.</li>
+        <li>유틸리티 라이브러리</li>
+        <ul>
+          <li>Lodash</li>
+          <li>Underscore</li>
+          <li>Sugar</li>
+        </ul>
+      </ul>
+      <hr>
+      <h3>예제</h3>
+      <ul>
+        <li v-for="story in orceredStories">{{ story.writer }} said {{ story.plot }} and Vote is {{ story.upvotes }}</li>
+      </ul>
+      <button @click="reverseOrder" type="button" class="btn btn-primary">Order Story ({{ order }})</button>
+      <hr>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <script type="text/javascript">
+  var filter5 = new Vue({
+    el: '.container',
+    data: function() {
+      return {
+        stories: [
+          {
+            'plot': "I crashed my car Today",
+            'writer': "Alex",
+            'upvotes': 28,
+          },
+          {
+            'plot': "Yesterday, someone stole my bag1",
+            'writer': "John",
+            'upvotes': 8,
+          },
+          {
+            'plot': "Someone ate my chocolate",
+            'writer': "John",
+            'upvotes': 51,
+          },
+          {
+            'plot': "I ate someone's chocolate",
+            'writer': "Alex",
+            'upvotes': 74,
+          },
+        ],
+        order: 'desc',
+      }
+    },
+    computed: {
+      orceredStories: function() {
+        var order = this.order
+        return _.orderBy(this.stories, 'upvotes', [order]);
+      }
+    },
+    methods: {
+      reverseOrder: function () {
+        this.order = (this.order === 'desc') ? "asc" : "desc";
+      }
+    }
+  })
+  </script>
+</html>
