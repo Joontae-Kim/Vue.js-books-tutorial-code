@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <h1>상호작용</h1>
+        <h3>계산된 프로퍼티 (computed)</h3>
+        <h4>로직이 복잡해지면 계산된 프로퍼티를 사용해야함.</h4>
+        <ul>
+          <li>계산된 프로퍼티 (computed property)란</li>
+          <li>다른 요인에 따라 값이 바뀌는 변수로서, 객체 프로퍼티로 사용할 수 있는 함수처럼 작동</li>
+          <li>계산된 프로퍼티가 의존하는 요소가 변경될 때마다 계산된 프로퍼티의 값은 다시 평가된다.</li>
+        </ul>
+        <hr>
+        <h3>예제)</h3>
+        <input v-model.number="a" type="number">
+        a={{ a }}, b={{ b }}
+        <hr>
+        <input v-model.number="c" type="number">
+        <input v-model.number="d" type="number">
+        Result: {{ c }} + {{ d }} = {{ e }}
+        <hr>
+        <input v-model.number="former" type="number">
+        <select v-model.string="operator">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+        <input v-model.number="latter" type="number">
+        <input v-model="result" type="number" disabled>
+        <hr>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      a: 1,
+      c: 0,
+      d: 0,
+      former: 0,
+      latter: 0,
+      operator: '+',
+    },
+    computed: {
+      b: function() {
+        return this.a + 1;
+      },
+      e: function() {
+        return this.c +  this.d;
+      },
+      result: function() {
+        const middler = this.operator
+        switch (middler) {
+          case "+":
+            return this.former + this.latter
+            break;
+          case "-":
+            return this.former - this.latter
+            break;
+          case "*":
+            return this.former * this.latter
+            break;
+          case "/":
+            return this.former / this.latter
+            break;
+        };
+      },
+    },
+  });
+  </script>
+</html>
