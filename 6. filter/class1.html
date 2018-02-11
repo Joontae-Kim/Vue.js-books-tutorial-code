@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chp6.1 Filter Result</h1>
+      <hr>
+      <h3>Let's hear some stories!</h3>
+      <ul class="list-group">
+        <li v-for="story in stories" class="list-group-item">{{ story.writer }} said "{{ story.plot}}"</li>
+      </ul>
+      <hr>
+      <h3>John's Story</h3>
+      <ul class="list-group">
+        <li v-for="story in storiesBy('John')" class="list-group-item">{{ story.writer }} said "{{ story.plot}}"</li>
+      </ul>
+      <hr>
+      <h3>Alex's Story</h3>
+      <ul class="list-group">
+        <li v-for="story in storiesBy('Alex')" class="list-group-item">{{ story.writer }} said "{{ story.plot}}"</li>
+      </ul>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  var filter1 = new Vue({
+    el: '.container',
+    data: function() {
+      return {
+        stories: [
+          {
+            'plot': "I crashed my car Today",
+            'writer': "Alex",
+          },
+          {
+            'plot': "Yesterday, someone stole my bag1",
+            'writer': "John",
+          },
+          {
+            'plot': "Someone ate my chocolate",
+            'writer': "John",
+          },
+          {
+            'plot': "I ate someone's chocolate",
+            'writer': "Alex",
+          },
+        ],
+      }
+    },
+    methods: {
+      storiesBy: function (writer) {
+        return this.stories.filter(function (story) {
+          return story.writer == writer;
+        });
+      }
+    }
+  })
+  </script>
+</html>
