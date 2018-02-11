@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chp6.2.1 Use Computed property</h1>
+      <hr>
+      <h3>Let's hear some stories!</h3>
+      <ul class="list-group">
+        <li v-for="( story, index ) in stories" :key="index" class="list-group-item">{{ story.writer }} said "{{ story.plot }}" || Votes : {{ story.upvotes }}</li>
+      </ul>
+      <hr>
+      <h3>Let's hear some famous stories! {{ famous.length }} </h3>
+      <ul class="list-group">
+        <li v-for="( story, index ) in famous" :key="index" class="list-group-item">{{ story.writer }} said "{{ story.plot}}" || Votes : {{ story.upvotes }}</li>
+      </ul>
+      <hr>
+      <h1>Chp6.2.2 Use Computed property and Query</h1>
+      <div class="form-group">
+        <label for="query">
+          Whay do you looking for?
+          <input v-model="query" class="form-control" type="text">
+        </label>
+      </div>
+      <h3>Search Result</h3>
+      <ul class="list-group">
+        <li v-for="( story, index ) in search" class="list-group-item">{{ story.writer }} said "{{ story.plot }}"</li>
+      </ul>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var filter2 =  new Vue({
+      el: '.container',
+      data: function () {
+        return {
+          stories: [
+            {
+              'plot': "I crashed my car Today",
+              'writer': "Alex",
+              'upvotes': 28,
+            },
+            {
+              'plot': "Yesterday, someone stole my bag1",
+              'writer': "John",
+              'upvotes': 8,
+            },
+            {
+              'plot': "Someone ate my chocolate",
+              'writer': "John",
+              'upvotes': 51,
+            },
+            {
+              'plot': "I ate someone's chocolate",
+              'writer': "Alex",
+              'upvotes': 74,
+            },
+          ],
+          query: '',
+        }
+      },
+      computed: {
+        famous: function () {
+          return this.stories.filter(function(item) {
+            return item.upvotes > 25;
+          })
+        },
+        search: function () {
+          var query = this.query;
+          return this.stories.filter(function(story) {
+            return story.plot.includes(query) || story.writer.includes(query)
+          })
+        }
+      }
+    })
+  </script>
+</html>
