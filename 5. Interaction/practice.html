@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>상호작용</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h4>Top candidate is {{ Top.name }} and has {{ Top.votes }} Votes. </h4>
+      <ul class="list-group">
+        <!-- <li v-for="(value, index) in mayor" :key="index"> {{ value.name }} {{ value.votes }} <button @click="value.votes++" class="btn btn-default">Vote</button></li> -->
+        <li v-for="(value, index) in mayor" :key="index" class="list-group-item"> {{ value.name }} {{ value.votes }} <button @click="upvote(index)" class="btn btn-default">Vote</button></li>
+      </ul>
+      <input @keyup.enter="resetVotes(resetMessage)" v-model="resetMessage" class="form-control" type="text" placeholder="press 'delete' to reset">
+      <span v-if="!resetStatus && resetMessage.length > 0" class="text-warning">It isn't correct reset message</span>
+      <hr>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var practiceVue = new Vue({
+      el: '.container',
+      data: function () {
+        return {
+          mayor: [
+            {'name': "Mr. Black", 'votes': 144},
+            {'name': "Mr.Pink", 'votes': 145},
+            {'name': "Mr.White", 'votes': 135},
+            {'name': "Mr.Brown", 'votes': 130},
+          ],
+          resetStatus: true,
+          resetMessage: ''
+        };
+      },
+      methods: {
+        upvote: function(index) {
+          return this.mayor[index].votes +=1;
+        },
+        resetVotes: function (resetMessage) {
+          if (resetMessage == 'delete') {
+            this.resetStatus = true;
+            var mayorGroup = this.mayor;
+            var len = Object.keys(this.mayor).length;
+            for (var i = 0; i < len; i++) {
+              mayorGroup[i].votes = 0;
+            };
+          } else{
+            this.resetStatus = false;
+          }
+        },
+      },
+      computed: {
+        Top: function() {
+          var candidatesSorted = this.mayor.sort(function (a, b) {
+              return b.votes - a.votes;
+          });
+          //the mayor will be the first item
+          return candidatesSorted[0];
+        },
+      }
+    })
+  </script>
+</html>
