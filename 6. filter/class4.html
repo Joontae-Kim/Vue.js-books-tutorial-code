@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chp6.4 Apply Custom Filter</h1>
+      <hr>
+      <h3>Data Structure</h3>
+      <p>Data Name: hero</p>
+      <ul>
+        <li>firstname</li>
+        <li>lastname</li>
+        <li>secretId</li>
+      </ul>
+      <hr>
+      <h3>Real identities of Super Heroes!</h3>
+      <ul class="list-group">
+        <li v-for="(hero, index) in Heroes" class="list-group-item">{{ hero | snitch }}</li>
+      </ul>
+      <hr>
+      <pre>{{ $data }}</pre>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  Vue.filter('snitch', function(hero) {
+    return hero.secretId + ' is ' + hero.firstname + ' '+ hero.lastname + ' in real life!'
+  });
+
+  var filter4 = new Vue({
+    el: '.container',
+    data: function() {
+      return {
+        Heroes:[
+          { 'firstname': 'Bruce','lastname': 'Waune','secretId': 'Batman'},
+          { 'firstname': 'Clark','lastname': 'Kent','secretId': 'Superman'},
+          { 'firstname': 'Jay','lastname': 'Garrick','secretId': 'Flash'},
+          { 'firstname': 'peter','lastname': 'Parker','secretId': 'Spider-Man'},
+        ]
+      }
+    }
+  })
+  </script>
+</html>
