@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>필터</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chp6.3 Sort Result</h1>
+      <hr>
+      <h3>Let's hear some stories!</h3>
+      <ul class="list-group">
+        <li v-for="( story, index ) in stories" :key="index" class="list-group-item">{{ story.writer }} said "{{ story.plot }}" || Votes : {{ story.upvotes }}</li>
+      </ul>
+      <hr>
+      <h3>Order Stories</h3>
+      <button @click="orderQuery = orderQuery * -1" class="btn btn-primary" type="button">Order {{ orderQuery }}</button>
+      <ul class="list-group">
+        <li v-for="( story, index ) in sortStories" :key="index" class="list-group-item">{{ story.writer }} said "{{ story.plot }}" || Votes : {{ story.upvotes }}</li>
+      </ul>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  var filter3 = new Vue({
+    el: '.container',
+    data: function () {
+      return {
+        stories: [
+          {
+            'plot': "I crashed my car Today",
+            'writer': "Alex",
+            'upvotes': 28,
+          },
+          {
+            'plot': "Yesterday, someone stole my bag1",
+            'writer': "John",
+            'upvotes': 8,
+          },
+          {
+            'plot': "Someone ate my chocolate",
+            'writer': "John",
+            'upvotes': 51,
+          },
+          {
+            'plot': "I ate someone's chocolate",
+            'writer': "Alex",
+            'upvotes': 74,
+          },
+        ],
+        orderQuery: 1,
+      }
+    },
+    computed: {
+      sortStories: function () {
+        var orderQuery = this.orderQuery
+        return this.stories.sort(function (a,b) {
+          return a.upvotes - b.upvotes * orderQuery;
+        })
+      },
+    },
+  })
+  </script>
+</html>
