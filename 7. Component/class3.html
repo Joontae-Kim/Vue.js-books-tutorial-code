@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.4 프로퍼티</h3>
+      <h4>예제 및 이론 설명</h4>
+      <ul>
+        <li>여러 개의 <code>story 컴포넌트 인스턴트</code>를 이용해 이야기 리스트를 표시하는 방법을 알아보자</li>
+        <li><code>template</code>이 항상 같은 이야기를 표시하지 않고 원하는 이야기의 줄거리를 표시하도록 수정</li>
+        <li>이를 위해 각 <code><\story> 엘리먼트</code>에 새로운 프로퍼티인 <code>plot</code>을 추가.</li>
+        <li>그리고 컴포넌트의 <code>props</code>속성에 <code>'plot' 프로퍼티</code>를 추가. </li>
+      </ul>
+      <hr>
+      <h4>Example</h4>
+      <div id="app">
+        <story plot="My horse is amazing!"></story>
+        <story plot="Narwhals invented Shish Kebab."></story>
+        <story plot="The dark side of the Force is stronger."></story>
+      </div>
+      <hr>
+      <h4>예제 및 이론 설명</h4>
+      <ul>
+        <li>컴포넌트는 두 개 이상의 프로퍼티를 가질 수 있으며, 엘리먼트가 지저분해질 경우 <code>객체를 전달하고 해당 객체의 프로퍼티를 표시할 수 있음</code></li>
+      </ul>
+      <h4>Example</h4>
+      <div id="app2">
+        <story2 :story="{plot: 'My horse is amazing!', writer: 'Mr.Kim'}"></story2>
+        <story2 :story="{plot: 'Narwhals invented Shish Kebab.', writer: 'Ms.Moon'}"></story2>
+        <story2 :story="{plot: 'The dark side of the Force is stronger.', writer: 'Mr.Yoon'}"></story2>
+      </div>
+    </div>
+    <template id="story-template">
+      <h1>{{ plot }}</h1>
+    </template>
+    <template id="story-template2">
+      <h1>{{ story.writer }} said "{{ story.plot }}"</h1>
+    </template>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    Vue.component('story', {
+      props: ['plot'],
+      template: '#story-template',
+    });
+
+    Vue.component('story2', {
+      props: ['story'],
+      template: '#story-template2',
+    });
+
+    var component3 = new Vue({
+      el: '#app',
+    });
+
+    var component31 = new Vue({
+      el: '#app2',
+    });
+
+  </script>
+</html>
