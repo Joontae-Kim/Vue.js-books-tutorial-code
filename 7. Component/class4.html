@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.5 재사용성</h3>
+      <ul>
+        <li>어떤 기능을 반복할 때마다 이를 처리하는 가장 효율적인 방법은 <code>전용 컴포넌트</code>를 만드는 것입니다.</li>
+      </ul>
+      <hr>
+      <h3>Example)</h3>
+      <h4>Let's hear some stories!</h4>
+      <div>
+        <h5>Alex</h5>
+        <ul class="list-group">
+          <story v-for="(story, index) in storiesBy('Alex')" :key="index" :story="story"></story>
+        </ul>
+        <hr>
+        <h5>John</h5>
+        <ul class="list-group">
+          <story v-for="(story, index) in storiesBy('John')" :key="index" :story="story" :story="story"></story>
+        </ul>
+        <hr>
+        <h5>Query</h5>
+        <label for="query">What are you looking for?</label>
+        <input v-model="query" type="text" class="form-control">
+        <h5>Search results:</h5>
+        <ul class="list-group">
+          <story v-for="(story, index) in search" :story="story" :key="index"></story>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <template id="story-tmp">
+      <li class="list-group-item"> {{ story.writer }} said " {{ story.body }}"</li>
+  </template>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('story', {
+    props: ['story'],
+    template: '#story-tmp',
+  });
+
+  var component4 = new Vue({
+    el: '.container',
+    data: function () {
+      return {
+        query: '',
+        stories: [
+          {
+            body: "I crashed my car today!",
+            writer: "Alex"
+          },
+          {
+            body: "Yesterday, someone stole my bag!",
+            writer: "John"
+          },
+          {
+            body: "Someone ate my chocolate...",
+            writer: "John"
+          },
+          {
+            body: "I ate someone's chocolate!",
+            writer: "Alex"
+          },
+        ],
+      }
+    },
+    methods: {
+      storiesBy : function (writer) {
+        return this.stories.filter(function(story) {
+          return story.writer == writer;
+        });
+      },
+    },
+    computed: {
+      search: function() {
+        var query = this.query;
+        return this.stories.filter(function(story) {
+          return story.body.includes(query) || story.body.includes(query) ;
+        });
+      },
+    }
+  })
+  </script>
+</html>
