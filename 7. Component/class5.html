@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <!-- <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.6 종합 예제</h3>
+      <ul>
+        <li> 투표 시스템 만들기 - 개발 활용 요소 </li>
+        <ul>
+          <li>메서드</li>
+          <li>디렉티브</li>
+          <li>컴포넌트</li>
+        </ul>
+      </ul>
+      <hr>
+      <div id="app">
+        <h1>Let's hear some stories!</h1>
+        <ul class="list-group">
+          <story v-for="(story, index) in stories" :story="story" :favorite="favorite" :key="index"></story>
+        </ul>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+  </body>
+  <template id="story-tmp">
+    <li class="list-group-item">{{ story.writer }} said "{{ story.body }}"
+      <button @click="upvote" :disabled="story.voted" class="btn btn-primary"> Upvote {{ story.upvotes }} </button>
+      <button v-show="!isFavorite" @click="setFavorite" type="button" class="btn btn-default">Favorite</button>
+      <span v-show="isFavorite" class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+    </li>
+  </template>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+      Vue.component('story',{
+        props:['story', 'favorite'],
+        template: '#story-tmp',
+        methods: {
+          upvote: function () {
+            this.story.voted = true;
+            this.story.upvotes++;
+          },
+          setFavorite: function () {
+            this.favorite = this.story;
+          }
+        },
+        computed: {
+          isFavorite: function() {
+            return this.story == this.favorite;
+          },
+        },
+      })
+
+      var component5 = new Vue({
+        el: '#app',
+        data: function() {
+          return {
+            stories: [
+              {
+                body: "I crashed my car today!",
+                writer: "Alex",
+                voted: false,
+                upvotes: 28,
+              },
+              {
+                body: "Yesterday, someone stole my bag!",
+                writer: "John",
+                voted: false,
+                upvotes: 8,
+              },
+              {
+                body: "Someone ate my chocolate...",
+                writer: "John",
+                voted: false,
+                upvotes: 49,
+              },
+              {
+                body: "I ate someone's chocolate!",
+                writer: "Alex",
+                voted: false,
+                upvotes: 74,
+              },
+            ],
+            favorite: {},
+          }
+        },
+      })
+
+  </script>
+</html>
