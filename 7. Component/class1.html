@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.1 정의</h3>
+      <ul>
+        <li>기본 HTML 엘리먼트를 확장해 재사용 가능한 코드를 캡슐화 하는데 이바지함.</li>
+        <li>Vue.js의 컴파일러가 특정 동작을 추가할 사용자 정의 엘리먼트에 해당.</li>
+        <li>어떤 경우에는 특별한 is 속성으로 확장된 기본 HTML 엘리먼트로 나타나기도 함.</li>
+        <li>새로운 기능을 위해 HTML을 확장하는 영리하고 강력한 방법</li>
+      </ul>
+      <hr>
+      <h3>7.2 컴포넌트 사용하기</h3>
+      <ul>
+        <li>컴포넌트 등록 방법</li>
+        <ul>
+          <li><code>Vue.component</code> 메서드를 사용</li>
+          <li><code>태그(tag)</code>와 <code>생성자(constructor)</code>를 전달하는 방식으로 아래와 같이 생각하면 됨.</li>
+          <ul>
+            <li><code>태그(tag)</code> = 컴포넌트의 이름</li>
+            <li><code>생성자(constructor)</code> = 생성자를 옵션</li>
+          </ul>
+        </ul>
+        <hr>
+      </ul>
+      <h5>예제</h5>
+      <ul>
+        <li>컴포넌트 이름(<code>태그</code>) = <code>story</code></li>
+        <li>프로퍼티 = <code>story</code></li>
+        <li>
+          <code>story 컴포넌트</code> 등록
+<pre>
+Vue.component('story', {
+  template: '<\h1>My horse is amazing!<\/h1>'
+})
+</pre>
+        </li>
+        <li>그리고 HTML 안에 <code><\story><\/story>라는 사용자 정의 엘리먼트</code>를 추가</li>
+      </ul>
+      <hr>
+      <h3>Example</h3>
+      <div id="app">
+        <story></story>
+        <hr>
+        <story></story>
+        <story></story>
+        <story></story>
+      </div>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    Vue.component('story', {
+      template: '<h1>My horse is amazing!</h1>'
+    })
+
+    var component1 = new Vue({
+      el: '#app',
+    })
+  </script>
+</html>
