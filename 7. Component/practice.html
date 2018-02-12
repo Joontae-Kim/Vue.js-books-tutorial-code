@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.7 연습 문제</h3>
+      <ol>
+        <li>데이터셋 구성</li>
+        <li>[각 행성 - 이름(name), 방문 횟수(visits) - 최대 방문회수 도달시 버튼 disabled, 행성 1회 이하 방문시 icon표시]로 구성</li>
+        <li>행성 1개당 최대 3번 방문가능</li>
+        <li><code>Planet 컴포넌트</code></li>
+      </ol>
+      <hr>
+      <div id="app">
+        <ul class="list-item">
+          <planets v-for="(planet, index) in planets" :planet="planet" :key="index"></planets>
+        </ul>
+      </div>
+    </div>
+    <template id="planet-tmp">
+      <li class="list-group-item">
+        {{ planet.name }}
+        <button @click="visiting" :disabled="!canBevisit" class="btn btn-primary">Visits {{ planet.visits }}</button>
+        <span v-if="planet.visits > 0" class="glyphicon glyphicon-plane"></span>
+      </li>
+    </template>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('planets',{
+    props: ['planet'],
+    template: '#planet-tmp',
+    methods: {
+      visiting: function() {
+        if(this.planet.visits < 3){
+          this.planet.visits++;
+        }
+      }
+    },
+    computed: {
+      canBevisit: function () {
+        return this.planet.visits < 3;
+      }
+    }
+  });
+  var practiceVue = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        planets: [
+          { name : 'Mars', visits: 0, },
+          { name : 'Pluto', visits: 0, },
+          { name : 'Mercury', visits: 0, },
+        ]
+      }
+    }
+  })
+  </script>
+</html>
