@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>컴포넌트</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>컴포넌트</h1>
+      <h3>7.3 템플릿</h3>
+      <ul>
+        <li>컴포넌트의 텟플릿을 선언하는 방법</li>
+        <ol>
+            <li>인라인 템플릿 선언</li>
+            <li><code>type="text/template"</code>로 설정된 <code>scrit 태그</code> 선언하고, <code>id</code> 지정 </li>
+            <ul>
+              <li>이 템플릿을 사용하려면 <code>컴포넌트의 template</code>에서 이 스크립트에 대한 선택자를 참조해야 함.</li>
+            </ul>
+            <li><code>template HTML 태그</code>를 만들고 <code>id</code> 지정</li>
+        </ol>
+      </ul>
+      <hr>
+      <h4>Example</h4>
+      <story></story>
+      <story></story>
+      <story></story>
+    </div>
+    <template id="story-template">
+      <h1>My horse is amazing!</h1>
+    </template>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    Vue.component('story',{
+      template: '#story-template',
+    });
+    var component2 = new Vue({
+      el: '.container',
+    })
+  </script>
+</html>
