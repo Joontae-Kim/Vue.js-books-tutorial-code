@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ECMAScript 6</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>ECMAScript</h1>
+      <h3>14.3 화살표 함수</h3>
+      <ol>
+        <li><code>=></code>를 사용하는 문법으로 정의한 함수</li>
+        <li>화살표 함수는 표현식과 본문 구문을 모두 지원.</li>
+        <li>화살표 함수는 일반 함수와 달리 주변 코드와 동일한 <code>this</code>를 공유</li>
+        <li>
+          일반 함수
+<pre>
+  // 화살표 함수 정의
+  var increment = value => value + 1;
+  increment(5) // 6 반환
+
+  // 다음 코드와 동일
+  var increment = function(value) {
+    return value + 1;
+  }
+</pre>
+        </li>
+        <li>
+          두 개의인자를 받아 합계를 반환하는 함수
+<pre>
+  // 화살표 함수 정의
+  var sum = (a, b) => a + b;
+  sum(5, 5) // 10 반환
+
+  // 다음 코드와 동일
+  var sum = function(a, b) {
+    return a + b;
+  }
+</pre>
+        </li>
+        <li>
+          인자 없이 본문 구문만 사용하는 예제
+<pre>
+  // 화살표 함수 정의
+  var sayHiAndBye = () => {
+    console.log('Hi')
+    console.log('bye!')
+  }
+  sayHiAndBye()
+
+  // 다음 코드와 동일
+  var sayHiAndBye = function() {
+    console.log('Hi')
+    console.log('bye!')
+  }
+  sayHiAndBye()
+</pre>
+        </li>
+      </ol>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+</html>

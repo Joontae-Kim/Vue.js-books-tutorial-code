@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ECMAScript 6</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>ECMAScript</h1>
+      <h3>14.4 모듈</h3>
+      <ul>
+        <li><code>모듈</code>은 JS에서 가장 향상된 기능이다.</li>
+        <li><code>ES6</code>는 여러 파일에서 <code>모듈</code>을 내보내고(export), 가져올(import)수 있는 기능을 지원.</li>
+        <li>예제</li>
+        <ol>
+<li>
+  변수 출력 예제<br>
+  <code>module.js</code>
+  <pre>
+    export name = 'Alex'
+  </pre>
+
+  <code>main.js</code>
+  <pre>
+    import { name } from './module';
+    console.log('Hello ', name) // "Hello Alex" 출력
+  </pre>
+</li>
+<li>
+  변수 및 함수 출력 예제
+  <br>
+  <code>module.js</code>
+  <pre>
+    export name = 'Alex'
+    export function getAge(){
+      return 22;
+    }
+  </pre>
+
+  <code>main.js</code>
+  <pre>
+    import { name, getAge } from './module';
+    console.log(name, ' is ', getAge()) // "Alex is 22" 출력
+  </pre>
+</li>
+<li>
+  객체 내부에서 내보내는 예제<br>
+  <code>module.js</code>
+  <pre>
+    var name = 'Alex'
+    function getAge() {
+      return 22;
+    }
+    export defualt { name, getAge}
+  </pre>
+
+  <code>main.js</code>
+  <pre>
+    import person from './module';
+    console.log(person.name, ' is ', person.getAge()) // "Alex is 22" 출력
+  </pre>
+</li>
+        </ol>
+      </ul>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+</html>

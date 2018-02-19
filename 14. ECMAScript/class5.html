@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ECMAScript 6</title>
+    <link rel="stylesheet" href="../lib/bootstrap.v3.3.3.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>ECMAScript</h1>
+      <h3>14.6 기본 매개변수 값</h3>
+      <ul>
+        <li><code>ES6</code>를 이용하면 기본 매개벼수 값을 정의할 수 있음.</li>
+<li>
+  <pre>
+function divide(x, y = 2) {
+  return x/y;
+}
+
+// 다음 코드와 동일
+function divide(x, y){
+  y = y == undefined ? 2 : y;
+  return x/y;
+}</pre>
+</li>
+
+      </ul>
+      <hr>
+      <h3>14.7 템플릿 리터럴</h3>
+      <ul>
+        <li><code>템플릿 리터럴</code>은</li>
+        <li>표현식을 포함할 수 있는 <code>문자열 리터럴</code>로써, <code>여러 줄 문자열</code>과 <code>보간</code> 기능을 지원함.</li>
+        <li>백틱(``)으로 감싸며, 백틱 안에서는 <code>`$(표현식)`으로 사용할 수 있음. 이때 표현식은 함수나 변수 또는 실제 표현식이 될 수 있음.</code></li>
+        <ol>
+          <li>
+변수 사용 <br />
+<pre>
+let name = 'Alex'
+console.log(`Hello ${name}`)
+</pre>
+
+          </li>
+          <li>
+함수 사용 <br />
+<pre>
+add = (a, b) => a + b;
+let [a, b] = [10, 2]
+
+console.log(`if you have ${a} eggs and you buy ${b} more yout'll have ${add(a,b)} eggs!`)
+</pre>
+          </li>
+          <li>
+표현식 사용 <br />
+<pre>
+let [a, b]= [10, 2]
+console.log(`if you have ${a} eggs and you buy ${b} more yout'll have ${ a + b } eggs!`)
+</pre>
+          </li>
+        </ol>
+
+      </ul>
+    </div>
+  </body>
+  <script src="../lib/node_modules/vue/dist/vue.js"></script>
+</html>
